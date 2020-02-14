@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> ReadInputRegisters Function </h1>
+						
+<p><a href="..\..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Sends a request to read a variable number of input registers.</p>
+
+<pre><code>
+    bool ReadInputRegisters( modbus_t hndl, uint8_t slaveID, uint16_t address, uint16_t registersToRead, uint16_t *readArray, size_t timeout );
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>hndl</code>The message handle.</p>
+    </li>
+    
+    <li><p><code>slaveID</code>Address of the slave device.</p>
+    </li>
+    
+    <li><p><code>address</code>Address of first input register to read on the device.</p>
+    </li>
+    
+    <li><p><code>registersToRead</code>Number of registers to read.</p>
+    </li>
+    
+    <li><p><code>readArray</code>Pointer to an array to store read data in.</p>
+    </li>
+    
+    <li><p><code>timeout</code>Time in milliseconds after which function will return an error if no response has been received from the device.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>true on success, or false on failure</p>
+
+</body>
+</html>

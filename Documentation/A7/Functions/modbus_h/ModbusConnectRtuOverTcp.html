@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> ModbusConnectRtuOverTcp Function </h1>
+						
+<p><a href="..\..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Creates and sets up a socket for RTU over TCP, and returns an opaque handle to be used by the Modbus low level APIs.</p>
+
+<pre><code>
+    modbus_t ModbusConnectRtuOverTcp( const char* ip, uint16_t port );
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>ip</code>The IP address of the device to be connected to.</p>
+    </li>
+    
+    <li><p><code>port</code>The port of the device to be connected to.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>Modbus handle on success, or null on failure</p>
+
+</body>
+</html>

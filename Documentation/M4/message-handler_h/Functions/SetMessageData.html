@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="SetMessageData"> SetMessageData Function </h1>
+						
+<p><a href="..\..\..\message-handler_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Set the message content for an outgoing message.</p>
+
+<pre><code>
+    bool SetMessageData(messageHandle *message, uint8_t *body, size_t length);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>message</code>The message to be written to.</p>
+    </li>
+    
+    <li><p><code>body</code>A pointer to the beginning of the data to be set.</p>
+    </li>
+    
+    <li><p><code>length</code>The length of the data to be set.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>true on success, or false on failure</p>
+
+</body>
+</html>

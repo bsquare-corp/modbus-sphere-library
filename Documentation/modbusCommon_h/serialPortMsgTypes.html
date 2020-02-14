@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="serialPortMsgTypes"> serialPortMsgTypes Enum </h1>
+						
+<p><a href="..\modbusCommon_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The type of serial port message being transmitted.</p>
+
+<pre><code>
+    {
+        UART_CFG_MESSAGE = 1,
+        UART_CFG_MESSAGE_RESPONSE,
+    } serialPortMsgTypes;
+</code></pre>
+
+
+<div class="table-scroll-wrapper"><table class="table">
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>UART_CFG_MESSAGE</td>
+        <td>The transmission being sent is a configuration for the devices header pins.</td>
+    </tr>
+    
+    <tr>
+        <td>UART_CFG_MESSAGE_RESPONSE</td>
+        <td>The transmission being sent is a response to a UART_CFG_MESSAGE.</td>
+    </tr>
+    </tbody>
+    </table></div>
+
+</body>
+</html>

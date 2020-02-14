@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="SendA7Message"> SendA7Message Function </h1>
+						
+<p><a href="..\..\..\message-handler_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>A function to send the data stored in the messagehandle to the A7.</p>
+
+<pre><code>
+    void SendA7Message(BufferHeader *inbound, BufferHeader *outbound, uint32_t sharedBufSize, messageHandle *message);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>inbound</code>A buffer header containing the read and write positions of the receive buffer.</p>
+    </li>
+    
+    <li><p><code>outbound</code>A buffer header containing the read and write positions of the sending buffer.</p>
+    </li>
+    
+    <li><p><code>sharedBufSize</code>The size of the shared buffer between the A7 and M4 that is used for intercore communications.</p>
+    </li>
+    
+    <li><p><code>message</code>The message to be sent.</p>
+    </li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> MODBUS_STATE Enum </h1>
+						
+<p><a href="..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The current state/action that the Modbus instance is performing.</p>
+
+<pre><code>
+    typedef enum
+    {
+        Idle,
+        SendingRequest,
+        WaitingForResponse,
+        DataReceived,
+        TransactionFailed
+    } MODBUS_STATE;
+</code></pre>
+
+
+<div class="table-scroll-wrapper"><table class="table">
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Idle</td>
+        <td>The Modbus instance is waiting to receive a task.</td>
+    </tr>
+    
+    <tr>
+        <td>SendingRequest</td>
+        <td>The Modbus instance is sending a request to its target device.</td>
+    </tr>
+    
+    <tr>
+        <td>WaitingForResponse</td>
+        <td>The Modbus instance has sent a request and is waiting for a response.</td>
+    </tr>
+    
+    <tr>
+        <td>DataReceived</td>
+        <td>The target device has successfully responded to the device.</td>
+    </tr>
+    
+    <tr>
+        <td>TransactionFailed</td>
+        <td>The target device has either taken too long or has not sent the expected response.</td>
+    </tr>
+    
+    </tbody>
+    </table></div>
+
+</body>
+</html>

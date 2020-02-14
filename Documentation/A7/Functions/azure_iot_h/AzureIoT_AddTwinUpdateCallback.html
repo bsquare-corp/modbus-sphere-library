@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="AzureIoT_AddTwinUpdateCallback"> AzureIoT_AddTwinUpdateCallback Function </h1>
+						
+<p><a href="..\..\..\azure_iot_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Add a callback to the list to be searched when the Twin is updated.</p>
+
+<pre><code>
+    bool AzureIoT_AddTwinUpdateCallback(const char* property, twinCallback fPtr, TwinUpdateContext context);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>property</code>A string containing the desired property change that will trigger the callback.</p>
+    </li>
+    
+    <li><p><code>fPtr</code>The callback to use<.</p>
+    </li>
+    
+    <li><p><code>context</code>Parameters to be passed to the callback.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>true if added, false if not enough space to store it</p>
+
+</body>
+</html>

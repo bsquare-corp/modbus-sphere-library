@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> messageHandlerState_t Enum </h1>
+						
+<p><a href="..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The current state/action of the Modbus message handler.</p>
+
+<pre><code>
+    typedef enum
+    {
+        success,
+        failure,
+        waiting
+    } messageHandlerState_t;
+</code></pre>
+
+
+<div class="table-scroll-wrapper"><table class="table">
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>success</td>
+        <td>A complete Modbus message has been received and validated.</td>
+    </tr>
+
+    <tr>
+        <td>failure</td>
+        <td>Either the Modbus message has timed out or it is invalid.</td>
+    </tr>
+    
+    <tr>
+        <td>waiting</td>
+        <td>The device is still waiting for a Modbus response.</td>
+    </tr>
+    </tbody>
+    </table></div>
+
+</body>
+</html>

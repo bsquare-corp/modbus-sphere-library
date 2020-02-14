@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> TWIN_CALLBACK Typedef </h1>
+						
+<p><a href="..\..\azure_iot_h.html" data-linktype="relative-path">Header:</a> #include &lt;azure_iot.h&gt;</p>
+<p>The trigger and the function to call when the trigger is reached for a twin callback.</p>
+
+<pre><code>
+    typedef struct {
+        char* property;     // desired property that will trigger the callback
+        twinCallback fPtr;  // function to call when desired property is found
+        TwinUpdateContext context;// Values to be passed back to the callback function
+    } TWIN_CALLBACK;    
+</code></pre>
+
+</body>
+</html>

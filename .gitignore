@@ -1,0 +1,6 @@
+.vs/
+bin/
+obj/
+out/
+*.suo
+Browse.VC.db
