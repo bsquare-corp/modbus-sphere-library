@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-modbus"> Modbus modbus.h</h1>
+						
+<p><a href=".\index.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The modbus header contains functions that allow the Azure Sphere to communicate to other modbus compatible devices.</p>
+
+<h2 id="functions">Functions</h2>
+<div class="table-scroll-wrapper"><table class="table">
+<thead>
+    <tr>
+        <th>Function</th>
+        <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusInit.html" data-linktype="relative-path">ModbusInit</a></td>
+    <td>Initialises the Epoll thread and sets up the relevant variables.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusExit.html" data-linktype="relative-path">ModbusExit</a></td>
+    <td>Closes the Epoll thread and cleans up relevant variables.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusErrorToString.html" data-linktype="relative-path">ModbusErrorToString</a></td>
+    <td>Takes error code from a modbus message and returns the error message as a string.</td>
+</tr>
+
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusConnectTcp.html" data-linktype="relative-path">ModbusConnectTcp</a></td>
+    <td>Creates and sets up a socket for TCP, and returns a message handle with all of the relevant information.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusConnectRtuOverTcp.html" data-linktype="relative-path">ModbusConnectRtuOverTcp</a></td>
+    <td>Creates and sets up a socket for RTU over TCP, and returns a message handle with all of the relevant information.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusConnectRtu.html" data-linktype="relative-path">ModbusConnectRtu</a></td>
+    <td>Creates and set up a socket for serial data, and returns a message handle with all of the relevant information.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ModbusClose.html" data-linktype="relative-path">ModbusClose</a></td>
+    <td>Closes the connection created by ModbusConnectIp/ModbusConnectRtu and frees the memory taken up by the handle.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadCoils.html" data-linktype="relative-path">ReadCoils</a></td>
+    <td>Sends a request to read a variable number of coils.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadDiscreteInputs.html" data-linktype="relative-path">ReadDiscreteInputs</a></td>
+    <td>Sends a request to read a variable number of discrete inputs.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadMultipleHoldingRegisters.html" data-linktype="relative-path">ReadMultipleHoldingRegisters</a></td>
+    <td>Sends a request to read a variable number of holding registers.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadInputRegisters.html" data-linktype="relative-path">ReadInputRegisters</a></td>
+    <td>Sends a request to read a variable number of input registers.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadFile.html" data-linktype="relative-path">ReadFile</a></td>
+    <td>Sends a request to read from a file stored on the slave device.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\ReadFileSubRequestBuilder.html" data-linktype="relative-path">ReadFileSubRequestBuilder</a></td>
+    <td>Creates and appends (if there is already a subrequest) a new subrequest to be placed into the ReadFile request message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteSingleCoil.html" data-linktype="relative-path">WriteSingleCoil</a></td>
+    <td>Sends a request to write to a single coil.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteSingleHoldingRegister.html" data-linktype="relative-path">WriteSingleHoldingRegister</a></td>
+    <td>Sends a request to write to a holding register.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteMultipleCoils.html" data-linktype="relative-path">WriteMultipleCoils</a></td>
+    <td>Sends a request to write to a variable number of coils.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteMultipleHoldingRegisters.html" data-linktype="relative-path">WriteMultipleHoldingRegisters</a></td>
+    <td>Sends a request to write to a variable number of holding registers.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteFile.html" data-linktype="relative-path">WriteFile</a></td>
+    <td>Sends a request to write to a file stored on the slave device.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\WriteFileSubRequestBuilder.html" data-linktype="relative-path">WriteFileSubRequestBuilder</a></td>
+    <td>Creates and appends (if there is already a subrequest) a new subrequest to be placed into the WriteFile request message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Functions\modbus_h\.html" data-linktype="relative-path"></a></td>
+    <td></td>
+</tr>
+
+</tbody>
+</table></div>
+
+
+
+<h2 id="enums">Enums</h2>
+<div class="table-scroll-wrapper"><table class="table">
+<thead>
+    <tr>
+        <th>Enum</th>
+        <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr>
+    <td><a href=".\A7\Enums\messageHandlerState_t.html" data-linktype="relative-path">messageHandlerState_t</a></td>
+    <td> The current state/action of the Modbus message handler.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Enums\MODBUS_STATE.html" data-linktype="relative-path">MODBUS_STATE</a></td>
+    <td>The current state/action that the Modbus instance is performing.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Enums\modbusTransportType_t.html" data-linktype="relative-path">modbusTransportType_t</a></td>
+    <td>The type of transport Modbus uses to transmit its data.</td>
+</tr>
+
+</tbody>
+</table></div>
+
+
+
+<h2 id="typedefs">Typedefs</h2>
+<div class="table-scroll-wrapper"><table class="table">
+<thead>
+    <tr>
+        <th>Typedef</th>
+        <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr>
+    <td><a href=".\A7\Typedefs\modbus_t.html" data-linktype="relative-path">modbus_t</a></td>
+    <td>Stores all the information required for the Modbus instance to run.</td>
+</tr>
+
+<tr>
+    <td><a href=".\A7\Typedefs\serialSetup.html" data-linktype="relative-path">serialSetup</a></td>
+    <td>Stores the serial parameters for connecting to a device using RTU.</td>
+</tr>
+
+</tbody>
+</table></div>
+
+
+</body>
+</html>
+
+

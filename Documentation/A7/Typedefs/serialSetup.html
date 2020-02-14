@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> serialSetup Typedef </h1>
+						
+<p><a href="..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Stores the serial parameters for connecting to a device using RTU..</p>
+
+<pre><code>
+    typedef struct _serialSetup
+{
+    uint16_t baudRate;
+    uint8_t duplexMode;
+    uint8_t parityMode;
+    uint8_t parityState;
+    uint8_t stopBits;
+    uint8_t wordLength;
+} serialSetup;
+</code></pre>
+
+</body>
+</html>

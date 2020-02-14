@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> modbus_t Typedef </h1>
+						
+<p><a href="..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Stores all the information required for the Modbus instance to run.</p>
+
+<pre><code>
+    struct _modbus_t
+    {
+        modbusTransportType_t type;     // The method of data transfer being used
+        union _connectData connectData; // Any additional data required for that transfer method.
+        int fd;                         // The file descriptor
+        uint16_t transactionId;         // Used to check TCP responses
+        uint16_t lastTransactionId;     // Used to check for wraparound when overflowing the transaction identifier
+        MODBUS_STATE state;             // The current state of a transaction
+        uint16_t bufferedMessageLength; // The current length of the data written since the last successful read
+        uint16_t pduLength;             // After a successful read it will be length of valid data in the pdu buffer
+        bool isCFG;                     // Bool to let the device know to add a modbus header or a config header.
+        uint8_t bufferedMessage[MAX_PDU_LENGTH]; // The buffer storing data since the last successful message from the device
+        #ifdef BUFFER_CHECK_ON
+        uint8_t bufferZone1[BUFFER_ZONE_SIZE]; // Debug only - used to detect possible buffer overrun
+        #endif
+        uint8_t pdu[MAX_PDU_LENGTH]; // The data buffer used to store the pdu received from the device
+        #ifdef BUFFER_CHECK_ON
+        uint8_t bufferZone2[BUFFER_ZONE_SIZE]; // Debug only - used to detect possible buffer overrun
+        #endif
+    };
+    typedef struct _modbus_t *modbus_t;
+</code></pre>
+
+</body>
+</html>

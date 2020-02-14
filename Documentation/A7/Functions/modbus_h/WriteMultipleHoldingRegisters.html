@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> WriteMultipleHoldingRegisters Function </h1>
+						
+<p><a href="..\..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Sends a request to write to a variable number of holding registers.</p>
+
+<pre><code>
+    bool WriteMultipleHoldingRegisters( modbus_t hndl, uint8_t slaveID, uint16_t address, uint16_t numToWrite, uint16_t *registerArray, uint8_t* readArray, size_t timeout );
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>hndl</code>The message handle.</p>
+    </li>
+    
+    <li><p><code>slaveID</code>Address of the slave device.</p>
+    </li>
+    
+    <li><p><code>address</code>Address of the first register to write to.</p>
+    </li>
+    
+    <li><p><code>numToWrite</code>Number of registers to write.</p>
+    </li>
+    
+    <li><p><code>registerArray</code>Pointer to the array of data to write from.</p>
+    </li>
+    
+    <li><p><code>readArray</code>Pointer to an array to store the error code response if present.</p>
+    </li>
+    
+    <li><p><code>timeout</code>Time in milliseconds after which function will return an error if no response has been received from the device.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>true on success, or false on failure</p>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> WriteFileSubRequestBuilder Function </h1>
+						
+<p><a href="..\..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Creates and appends (if there is already a subrequest) a new subrequest to be placed into the WriteFile request message.</p>
+
+<pre><code>
+    uint8_t WriteFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessageIndex, uint16_t fileNumber, uint16_t recordNumber, uint8_t recordLength, uint16_t* record);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>messageArray</code>The array to store the subrequests.</p>
+    </li>
+    
+    <li><p><code>currentMessageIndex</code>The sum of the lengths of the subrequests (0 if its the first/only subrequest).</p>
+    </li>
+    
+    <li><p><code>fileNumber</code>The ID number of the file to write to.</p>
+    </li>
+    
+    <li><p><code>recordNumber</code>The index on the file to start writing to.</p>
+    </li>
+    
+    <li><p><code>recordLength</code>How many pairs of bytes to write.</p>
+    </li>
+    
+    <li><p><code>record</code>The data to be written.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>The new length of the messageArray (to be used for messageLength in WriteFile and currentMessageIndex if you want to use WriteFileSubRequestBuilder to add multiple requests in a single message)</p>
+
+</body>
+</html>

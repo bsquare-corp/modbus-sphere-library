@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> ModbusConnectRtu Function </h1>
+						
+<p><a href="..\..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Creates and set up a socket for serial data, and returns an opaque handle to be used by the Modbus low level APIs.</p>
+
+<pre><code>
+    modbus_t ModbusConnectRtu( serialSetup setup, size_t timeout );
+</code></pre>
+
+<h2 id="functions">Parameters</h2>
+<ul>
+    <li><p><code>setup</code>The serial parameters that the M4 will use to transmit and recieve data.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>Modbus handle on success, or null on failure</p>
+</body>
+</html>

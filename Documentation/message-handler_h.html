@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> Modbus message-handler.h</h1>
+						
+<p><a href=".\index.html" data-linktype="relative-path">Header:</a> #include &lt;message-handler.h&gt;</p>
+<p>The Modbus message-handler header contains functions that support tranmission between the A7 and M4 in order to send and receive data to the physical header pins.</p>
+
+<h2 id="functions">Functions</h2>
+<div class="table-scroll-wrapper"><table class="table">
+<thead>
+    <tr>
+        <th>Function</th>
+        <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\ReadA7Message.html" data-linktype="relative-path">ReadA7Message</a></td>
+    <td>Checks to see if a message has arrived from the A7, if so it stores it for future use.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessageProtocol.html" data-linktype="relative-path">GetMessageProtocol</a></td>
+    <td>A function to retrieve the protocol byte from the message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessageCommand.html" data-linktype="relative-path">GetMessageCommand</a></td>
+    <td>A function to retrieve the command byte from the message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessageLength.html" data-linktype="relative-path">GetMessageLength</a></td>
+    <td>A function to retrieve the length of the message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessageMaxLength.html" data-linktype="relative-path">GetMessageMaxLength</a></td>
+    <td>A function to retrieve the maximum message length of a message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessageDataPtr.html" data-linktype="relative-path">GetMessageDataPtr</a></td>
+    <td>A function to retriveve the pointer to the beginning of the message</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\GetMessagePrefixPtr.html" data-linktype="relative-path">GetMessagePrefixPtr</a></td>
+    <td>A function to retrieve the pointer to the message prefix (for intercore communications)</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SetMessageProtocol.html" data-linktype="relative-path">SetMessageProtocol</a></td>
+    <td>Set the protocol byte for an outbound message</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SetMessageCommand.html" data-linktype="relative-path">SetMessageCommand</a></td>
+    <td>Set the command byte for an outbound message</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SetMessagePrefix.html" data-linktype="relative-path">SetMessagePrefix</a></td>
+    <td>Set the message prefix for an outgoing message (for intercore communications)</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SetMessageData.html" data-linktype="relative-path">SetMessageData</a></td>
+    <td>Set the message content for an outgoing message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SetMessageLength.html" data-linktype="relative-path">SetMessageLength</a></td>
+    <td>Set the message length for an outgoing message.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\SendA7Message.html" data-linktype="relative-path">SendA7Message</a></td>
+    <td>A function to send the data stored in the messagehandle to the A7.</td>
+</tr>
+
+<tr>
+    <td><a href=".\M4\message-handler_h\Functions\InitMessage.html" data-linktype="relative-path">InitMessage</a></td>
+    <td>Initialize a messagehandle.</td>
+</tr>
+</tbody>
+</table></div>
+
+
+
+<h2 id="typedefs">Typedefs</h2>
+<div class="table-scroll-wrapper"><table class="table">
+<thead>
+    <tr>
+        <th>Typedef</th>
+        <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+
+<tr>
+    <td><a href=".\M4\Typedefs\messageHandle.html" data-linktype="relative-path">messageHandle</a></td>
+    <td>Stores modbus messages to and from the A7 as well as the important indicies within them. </td>
+</tr>
+
+
+</tbody>
+</table></div>
+
+
+</body>
+</html>
+
+

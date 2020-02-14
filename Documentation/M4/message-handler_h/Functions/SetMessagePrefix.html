@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="SetMessagePrefix"> SetMessagePrefix Function </h1>
+						
+<p><a href="..\..\..\message-handler_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Set the message prefix for an outgoing message (for intercore communications).</p>
+
+<pre><code>
+    void SetMessagePrefix(messageHandle *message, uint8_t *prefix);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>message</code>The message to be written to.</p>
+    </li>
+    
+    <li><p><code>prefix</code>A pointer to the beginning of the prefix.</p>
+    </li>
+</ul>
+
+</body>
+</html>

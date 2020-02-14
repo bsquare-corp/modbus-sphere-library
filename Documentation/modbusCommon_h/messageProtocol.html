@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="messageProtocol"> messageProtocol Enum </h1>
+						
+<p><a href="..\modbusCommon_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The protocol used to transmit the message.</p>
+
+<pre><code>
+    typedef enum
+    {
+        UART = 1,
+        MODBUS,
+    } messageProtocol;
+</code></pre>
+
+
+<div class="table-scroll-wrapper"><table class="table">
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>UART</td>
+        <td>The transmission is to be sent via UART.</td>
+    </tr>
+    
+    <tr>
+        <td>MODBUS</td>
+        <td>The transmission is to be sent via Modbus.</td>
+    </tr>
+    </tbody>
+    </table></div>
+
+</body>
+</html>

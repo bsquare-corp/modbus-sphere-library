@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="Modbus-message-handler"> modbusTransportType_t Enum </h1>
+						
+<p><a href="..\..\modbus_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>The type of transport Modbus uses to transmit its data.</p>
+
+<pre><code>
+    typedef enum
+    {
+        tcp,
+        rtuOverTcp,
+        rtu
+    } modbusTransportType_t;
+</code></pre>
+
+
+<div class="table-scroll-wrapper"><table class="table">
+    <thead>
+        <tr>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>tcp</td>
+        <td>The Modbus instance will be using Modbus TCP</td>
+    </tr>
+    
+    <tr>
+        <td>rtuOverTcp</td>
+        <td>The Modbus instance will be using Modbus RTU/TCP</td>
+    </tr>
+    
+    <tr>
+        <td>rtu</td>
+        <td>The Modbus instance will be using Modbus RTU</td>
+    </tr>
+    </tbody>
+    </table></div>
+
+</body>
+</html>

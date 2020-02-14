@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="ReadA7Message"> ReadA7Message Function </h1>
+						
+<p><a href="..\..\..\message-handler_h.html" data-linktype="relative-path">Header:</a> #include &lt;modbus.h&gt;</p>
+<p>Checks to see if a message has arrived from the A7, if so it stores it in message for future use.</p>
+
+<pre><code>
+    bool ReadA7Message(BufferHeader *inbound, BufferHeader *outbound, uint32_t sharedBufSize, messageHandle *message);
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+<ul>
+    <li><p><code>inbound</code>A buffer header containing the read and write positions of incoming data.</p>
+    </li>
+    
+    <li><p><code>outbound</code>A buffer header containing the read and write positions of outgoing data.</p>
+    </li>
+    
+    <li><p><code>sharedBufSize</code>The size of the shared buffer between the A7 and M4 that is used for intercore communications.</p>
+    </li>
+    
+    <li><p><code>message</code>The handle for the message to be stored in.</p>
+    </li>
+</ul>
+
+<h2 id="returns">Returns</h2>
+<p>true if a message has been read, or false if one has not</p>
+
+</body>
+</html>
