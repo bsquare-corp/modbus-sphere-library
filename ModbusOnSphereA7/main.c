@@ -192,6 +192,7 @@ static int InitHandlers(void)
     }
     else {
         Log_Debug("Failed to connect to any device\n");
+        return -1;
     }
 
 
