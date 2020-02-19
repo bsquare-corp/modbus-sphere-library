@@ -237,14 +237,18 @@ modbus_t ModbusConnectRtu(serialSetup setup, size_t timeout)
 modbus_t ModbusConnectRtuOverTcp(const char* ip, uint16_t port) {
     modbus_t hndl;
     hndl = ModbusConnectIp(ip, port);
-    hndl->type = rtuOverTcp;
+    if (hndl) {
+        hndl->type = rtuOverTcp;
+    }
     return hndl;
 }
 
 modbus_t ModbusConnectTcp(const char* ip, uint16_t port) {
     modbus_t hndl;
     hndl = ModbusConnectIp(ip, port);
-    hndl->type = tcp;
+    if (hndl) {
+        hndl->type = tcp;
+    }
     return hndl;
 }
 
