@@ -43,8 +43,8 @@ void RtuOverTcp_ReadModbusData(modbus_t hndl)
 
     if (CHANGE_FILES)
     {
-        int writeMessageLength;
-        int readMessageLength;
+        uint8_t writeMessageLength;
+        uint8_t readMessageLength;
         for (int i = 0; i < RECORD_COUNT; i++)
         {
             counter = (counter + 1) & 15;
@@ -62,9 +62,12 @@ void RtuOverTcp_ReadModbusData(modbus_t hndl)
         }
         else
         {
-            for (int i = 0; i < RECORD_COUNT; i++)
+            for (uint8_t i = 0; i < RECORD_COUNT; i++)
             {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
                 FileRecordsTelemetryData[i] = (dataRead[(2 * i) + 2] << 8) | (dataRead[(2 * i) + 3]);
+#pragma GCC diagnostic pop
             }
         }
 

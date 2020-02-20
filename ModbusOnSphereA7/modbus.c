@@ -800,6 +800,8 @@ uint8_t ReadFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessageI
 {
     //Modbus specification states that the reference type must be set to 6.
     messageArray[currentMessageIndex] = 6;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
     messageArray[currentMessageIndex + 1] = fileNumber >> 8;
     messageArray[currentMessageIndex + 2] = fileNumber & 0xFF;
     messageArray[currentMessageIndex + 3] = recordNumber >> 8;
@@ -807,11 +809,12 @@ uint8_t ReadFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessageI
     messageArray[currentMessageIndex + 5] = 0;
     messageArray[currentMessageIndex + 6] = recordLength;
     return currentMessageIndex + 7;
+#pragma GCC diagnostic pop
 }
 
 bool ReadFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t messageLength, uint8_t* readArray, size_t timeout)
 {
-    int expectedMessageLength=0;
+    uint16_t expectedMessageLength=0;
     if (hndl->state != Idle)
     {
         Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
@@ -837,13 +840,16 @@ bool ReadFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t mes
     //finds the sum of the record lengths of each subrequest combined with length of the subrequests themselves to find the total expected length of the response (to help with validation)
         if (i % 7 == 6)
         {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
             expectedMessageLength += (messageArray[i] * 2) + 2;
+#pragma GCC diagnostic pop
         }
     }
 
     hndl->isCFG = false;
     // write structure
-    if (!ModBusWrite(hndl, modbusMessage, 3 + messageLength))
+    if (!ModBusWrite(hndl, modbusMessage, (uint16_t)(3 + messageLength)))
     {
         readArray[0] = MESSAGE_SEND_FAIL;
         return false;
@@ -878,6 +884,8 @@ bool ReadFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t mes
 uint8_t WriteFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessageIndex, uint16_t fileNumber, uint16_t recordNumber, uint8_t recordLength, uint16_t* record)
 {
     messageArray[currentMessageIndex] = 6;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
     messageArray[currentMessageIndex + 1] = fileNumber >> 8;
     messageArray[currentMessageIndex + 2] = fileNumber & 0xFF;
     messageArray[currentMessageIndex + 3] = recordNumber >> 8;
@@ -890,6 +898,7 @@ uint8_t WriteFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessage
         messageArray[currentMessageIndex + 8 + (i * 2)] = record[i] & 0xFF;
     }
     return currentMessageIndex + 7 + (recordLength * 2);
+#pragma GCC diagnostic pop
 }
 
 bool WriteFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t messageLength, uint8_t* readArray, size_t timeout) {
@@ -909,7 +918,7 @@ bool WriteFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t me
 
     hndl->isCFG = false;
     // write structure
-    if (!ModBusWrite(hndl, modbusMessage, PDU_HEADER_LENGTH + messageLength))
+    if (!ModBusWrite(hndl, modbusMessage, (uint16_t)(PDU_HEADER_LENGTH + messageLength)))
     {
         readArray[0] = MESSAGE_SEND_FAIL;
         return false;
@@ -1358,7 +1367,7 @@ static uint16_t GetFcodeLength(uint8_t fCode, uint8_t dataLength)
     case READ_INPUT_REGISTERS:
         return (uint16_t)(PDU_HEADER_LENGTH + dataLength);
     case READ_FILE:
-        return PDU_HEADER_LENGTH + dataLength;
+        return (uint16_t)(PDU_HEADER_LENGTH + dataLength);
     case WRITE_SINGLE_COIL:
         return PDU_HEADER_LENGTH + 3;
     case WRITE_SINGLE_HOLDING_REGISTER:
@@ -1370,7 +1379,7 @@ static uint16_t GetFcodeLength(uint8_t fCode, uint8_t dataLength)
     case WRITE_MULTIPLE_HOLDING_REGISTERS:
         return PDU_HEADER_LENGTH + 3;
     case WRITE_FILE:
-        return PDU_HEADER_LENGTH + dataLength;
+        return (uint16_t)(PDU_HEADER_LENGTH + dataLength);
 
     default:
         Log_Debug("Error: Unsupported function code.\n");
