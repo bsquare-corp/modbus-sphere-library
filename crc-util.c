@@ -50,7 +50,10 @@ static uint16_t GetCRC( uint8_t *message, int inputLength ) {
     uint8_t TempNo;
     uint16_t crcVal = 0xFFFF;
     for (int i = 0; i < inputLength; i++) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
         TempNo = message[i] ^ crcVal;
+#pragma GCC diagnostic pop
         crcVal >>= 8;
         crcVal ^= CRCTable[TempNo];
     }
