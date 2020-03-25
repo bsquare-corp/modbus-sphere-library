@@ -56,6 +56,7 @@ typedef enum
 #define MESSAGE_SEND_FAIL 21
 #define HANDLE_IN_USE 22
 #define INVALID_RESPONSE 23
+#define DEVICE_DISCONNECTED 24
 
 /* Supported baud rates */
 #define BAUD_SET_300 384

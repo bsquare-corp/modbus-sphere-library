@@ -3,11 +3,11 @@
   "Name": "ModbusOnSphereA7",
   "ComponentId": "25025d2c-66da-4448-bae1-ac26fcdd3627",
   "EntryPoint": "/bin/app",
-    "CmdArgs": [ "--DPS-SCOPE-ID--", "-o", "--DEVICE-IP-ADDRESS(TRUoverTCP)--", "-t", "--DEVICE-IP-ADDRESS(TCP)--", "-r" ],
+  "CmdArgs": [ "0ne000A39CD", "-t", "192.168.0.42" ],
   "Capabilities": {
     "AllowedApplicationConnections": [ "005180bc-402f-4cb3-a662-72937dbcde47" ],
-    "AllowedConnections": [ "--DEVICE-IP-ADDRESS(TRUoverTCP)--", "--DEVICE-IP-ADDRESS(TCP)--", "global.azure-devices-provisioning.net", "--IOT-HUB-URL--" ],
-    "DeviceAuthentication": "--TENANT-ID--"
+    "AllowedConnections": [ "192.168.0.42", "global.azure-devices-provisioning.net", "Bsquare-Test-And-Development-Hub.azure-devices.net" ],
+    "DeviceAuthentication": "61c9f33d-6ac1-4981-85bf-2a1b86df3c22"
   },
   "ApplicationType": "Default"
 }
