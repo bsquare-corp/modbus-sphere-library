@@ -108,7 +108,8 @@ typedef enum
     SendingRequest,
     WaitingForResponse,
     DataReceived,
-    TransactionFailed
+    TransactionFailed,
+    Disconnected
 } MODBUS_STATE;
 
 struct _modbus_t
@@ -144,6 +145,7 @@ static messageHandlerState_t MessageHandler(modbus_t handl, uint8_t *message, ui
 static uint16_t GetFcodeLength(uint8_t fCode, uint8_t dataLength);
 static bool WaitForData(modbus_t hndl, size_t timeout);
 static uint16_t PduDataLength(modbus_t hndl, uint16_t expected);
+static MODBUS_STATE NotReadyReason(modbus_t hndl);
 #ifdef BUFFER_CHECK_ON
 static void SetBufferZones(modbus_t hndl);
 static bool BufferZonesValid(modbus_t hndl);
@@ -370,8 +372,8 @@ bool ReadCoils(modbus_t hndl, uint8_t slaveID, uint16_t address, uint16_t bitsTo
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -425,8 +427,8 @@ bool ReadDiscreteInputs(modbus_t hndl, uint8_t slaveID, uint16_t address, uint16
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -475,8 +477,8 @@ bool ReadMultipleHoldingRegisters(modbus_t hndl, uint8_t slaveID, uint16_t addre
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -530,8 +532,8 @@ bool ReadInputRegisters(modbus_t hndl, uint8_t slaveID, uint16_t address, uint16
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -595,8 +597,8 @@ bool WriteSingleCoil(modbus_t hndl, uint8_t slaveID, uint16_t address, bool bit,
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -645,8 +647,8 @@ bool WriteSingleHoldingRegister(modbus_t hndl, uint8_t slaveID, uint16_t address
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -694,8 +696,8 @@ bool WriteMultipleCoils(modbus_t hndl, uint8_t slaveID, uint16_t address, uint16
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -747,8 +749,8 @@ bool WriteMultipleHoldingRegisters(modbus_t hndl, uint8_t slaveID, uint16_t addr
 
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -817,8 +819,8 @@ bool ReadFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t mes
     uint16_t expectedMessageLength=0;
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -904,8 +906,8 @@ uint8_t WriteFileSubRequestBuilder(uint8_t* messageArray, uint8_t currentMessage
 bool WriteFile(modbus_t hndl, uint8_t slaveID, uint8_t* messageArray, uint8_t messageLength, uint8_t* readArray, size_t timeout) {
     if (hndl->state != Idle)
     {
-        Log_Debug("Call to %s while Handle in use\n", __FUNCTION__);
-        readArray[0] = HANDLE_IN_USE;
+        Log_Debug("Call to %s while Handle not Idle\n", __FUNCTION__);
+        readArray[0] = NotReadyReason(hndl);
         return false;
     }
 
@@ -1029,10 +1031,15 @@ static void *EpollThread(void *ptr)
 
         if (numEventsOccurred == 1 && event.data.ptr != NULL)
         {
+            modbus_t mh = (modbus_t)event.data.ptr;
+            if (mh->state == Disconnected) {
+                // There may well be lots of interrupts - silently ignore them so
+                // the debug output is not flooded
+                continue;
+            }
 
             if (event.events & EPOLLIN)
             {
-                modbus_t mh = (modbus_t)event.data.ptr;
 #ifdef BUFFER_CHECK_ON
                 if (!BufferZonesValid(mh))
                 {
@@ -1051,8 +1058,8 @@ static void *EpollThread(void *ptr)
             }
             if (event.events & (EPOLLRDHUP | EPOLLHUP))
             {
-                Log_Debug("Error: EPOLLRDHUP or EPOLLHUP has returned true. Reconnect\n");
-                // TODO reconnect;
+                Log_Debug("Error: EPOLLRDHUP or EPOLLHUP has returned true. Reconnect required.\n");
+                mh->state = Disconnected;
             }
         }
     }
@@ -1148,6 +1155,8 @@ const char *ModbusErrorToString(uint8_t errorNo)
         return "Exception: Handle in Use";
     case INVALID_RESPONSE:
         return "Exception: Wrong Function Code returned from device";
+    case DEVICE_DISCONNECTED:
+        return "Exception: Device Disconnected - reconnect required";
     default:
         return "Exception: Unknown exception";
     }
@@ -1395,7 +1404,8 @@ static bool WaitForData(modbus_t hndl, size_t timeout)
     bool retval = true;
     size_t counter = 0;
 
-    while ((hndl->state != DataReceived) && (hndl->state != TransactionFailed))
+    while ((hndl->state != DataReceived) && (hndl->state != TransactionFailed) 
+        && (hndl->state != Disconnected))
     {
         struct timespec t = {.tv_sec = 0, .tv_nsec = 100000};
 
@@ -1424,4 +1434,12 @@ static uint16_t PduDataLength(modbus_t hndl, uint16_t expected)
         Log_Debug("Warning: Got %d bytes in pdu when expecting %d\n", hndl->pduLength, expected + PDU_HEADER_LENGTH);
     }
     return (uint16_t)(hndl->pduLength - PDU_HEADER_LENGTH);
+}
+
+static MODBUS_STATE NotReadyReason(modbus_t hndl)
+{
+    if (hndl->state == Disconnected) {
+        return DEVICE_DISCONNECTED;
+    }
+    return HANDLE_IN_USE;
 }
