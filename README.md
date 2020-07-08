@@ -41,7 +41,7 @@ respectively to create the Modbus handle, which is used by the main functions to
 communicate with said target device.
 
 app_manifest.json
-```
+```json
 {
   "SchemaVersion": 1,
   "Name": "ModbusOnSphereA7",
@@ -58,7 +58,7 @@ app_manifest.json
 ```
 
 Sample code of TCP to read the status of the coils on a device:
-```
+```c
 main()
 {    
     if (!ModbusInit()) 
@@ -88,7 +88,7 @@ main()
 ```
 
 Sample code of TCP/RTU to read records from a file:
-```
+```c
 main()
 {
     if (!ModbusInit()) 
@@ -141,7 +141,7 @@ the device that it will be communicating to. These values can be set in a `seria
 will allow the Azure Sphere to communicate with a wide range of different devices.
 
 Sample code of RTU to write to a coil on a device:
-```
+```c
 main() 
 {
     if (!ModbusInit()) 
