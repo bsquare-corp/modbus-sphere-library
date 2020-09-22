@@ -1,9 +1,7 @@
 ﻿{
   "environments": [
     {
-      "environment": "AzureSphere",
-
-      "AzureSphereTargetApiSet": "4+Beta2001"
+      "environment": "AzureSphere"
     }
   ],
   "configurations": [
@@ -15,7 +13,7 @@
         "AzureSphere"
       ],
       "buildRoot": "${projectDir}\\out\\${name}-${env.AzureSphereTargetApiSet}",
-      "installRoot": "${projectDir}\\install\\${name}-${env.AzureSphereTargetApiSet}",
+      "installRoot": "${projectDir}\\install\\${name}",
       "cmakeCommandArgs": "--no-warn-unused-cli",
       "buildCommandArgs": "-v",
       "ctestCommandArgs": "",
@@ -23,10 +21,6 @@
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
           "value": "${env.AzureSphereDefaultSDKDir}CMakeFiles\\AzureSphereRTCoreToolchain.cmake"
-        },
-        {
-          "name": "AZURE_SPHERE_TARGET_API_SET",
-          "value": "${env.AzureSphereTargetApiSet}"
         },
         {
           "name": "ARM_GNU_PATH",
@@ -42,7 +36,7 @@
         "AzureSphere"
       ],
       "buildRoot": "${projectDir}\\out\\${name}-${env.AzureSphereTargetApiSet}",
-      "installRoot": "${projectDir}\\install\\${name}-${env.AzureSphereTargetApiSet}",
+      "installRoot": "${projectDir}\\install\\${name}",
       "cmakeCommandArgs": "--no-warn-unused-cli",
       "buildCommandArgs": "-v",
       "ctestCommandArgs": "",
@@ -50,10 +44,6 @@
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
           "value": "${env.AzureSphereDefaultSDKDir}CMakeFiles\\AzureSphereRTCoreToolchain.cmake"
-        },
-        {
-          "name": "AZURE_SPHERE_TARGET_API_SET",
-          "value": "${env.AzureSphereTargetApiSet}"
         },
         {
           "name": "ARM_GNU_PATH",

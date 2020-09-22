@@ -4,6 +4,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.11)
 PROJECT(ModbusOnSphereA7 C)
 
+azsphere_configure_tools(TOOLS_REVISION "20.07")
+azsphere_configure_api(TARGET_API_SET "6")
 
 # Create executable
 ADD_EXECUTABLE(${PROJECT_NAME} main.c azure_iot.c epoll_timerfd_utilities.c modbus.c parson.c tcw241.c adam4150.c rtuovertcp.c ../crc-util.c)
