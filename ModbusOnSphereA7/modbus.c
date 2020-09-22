@@ -185,7 +185,7 @@ modbus_t ModbusConnectRtu(serialSetup setup, size_t timeout)
     {
         memset(hndl, 0, sizeof(struct _modbus_t));
         // Open connection to real-time capable application.
-        sockFd = Application_Socket(rtAppComponentId);
+        sockFd = Application_Connect(rtAppComponentId);
         if (sockFd == -1)
         {
             Log_Debug("Error: Unable to create Application socket: %d (%s)\n", errno, strerror(errno));
